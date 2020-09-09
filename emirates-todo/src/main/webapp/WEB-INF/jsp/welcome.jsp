@@ -40,5 +40,38 @@
 		</div>
 	</div>
 	<button id="reset" class="btn btn-success"
+		
+		
+		
+		if(ocrBirthday !=null && !"".equals(ocrBirthday) && ocrBirthday.contains("年")) {
+                                    fBirthdateY=ocrBirthday.split("年")[0];
+                                    int len =fBirthdateY.length();
+                                    if(!"".equals(fBirthdateY) && len>=2) {
+                                        fBirthdateY= fBirthdateY.substring(len-2,len);
+                                        /*年が「元年」の場合*/
+                                        if(fBirthdateY.contains("元")){
+                                            fBirthdateY="01";
+                                        }
+                                        fBirthday=fBirthday+fBirthdateY;
+                                    }
+                                    ocrBirthday=ocrBirthday.split("年")[1];
+                                if(ocrBirthday !=null && !"".equals(ocrBirthday) && ocrBirthday.contains("月")) {
+                                    fBirthdateM=ocrBirthday.split("月")[0];
+                                    if(!"".equals(fBirthdateM) && fBirthdateM.length()==1) {
+                                        fBirthdateM="0"+fBirthdateM;
+                                    }
+                                    fBirthday=fBirthday+fBirthdateM;
+                                    ocrBirthday=ocrBirthday.split("月")[1];
+
+                                }
+                                if(ocrBirthday.contains("日")) {
+                                    fBirthdateD=ocrBirthday.split("日")[0];
+                                    if(!"".equals(fBirthdateD) && fBirthdateD.length()==1) {
+                                        fBirthdateD="0"+fBirthdateD;
+                                    }
+                                    fBirthday=fBirthday+fBirthdateD;
+
+                                }
+                            }
 									ng-click='resetAll()'>Reset Application</button>
 </div>
